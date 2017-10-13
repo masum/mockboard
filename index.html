@@ -12,78 +12,59 @@ $.fn.extend({
         return this;
     }
 });
+var common = {
+  width:"350px",
+  height:"200px",
+  fontSize:"100px"
+}
 var list = {
   "pop1":{
       top:"10px",
-      left: "790px",
-      width:"350px",
-      height:"200px",
-      fontSize:"100px",
+      left: "790px"
   },
   "pop2":{
       top:"170px",
-      left: "1160px",
-      width:"350px",
-      height:"200px",
-      fontSize:"100px",
+      left: "1160px"
   },
   "pop3":{
       top:"340px",
-      left:"1530px",
-      width:"350px",
-      height:"200px",
-      fontSize:"100px",
+      left:"1530px"
   },
   "pop4":{
       top:"550px",
-      left: "1530px",
-      width:"350px",
-      height:"200px",
-      fontSize:"100px",
+      left: "1530px"
   },
   "pop5":{
       top:"710px",
-      left: "1160px",
-      width:"350px",
-      height:"200px",
-      fontSize:"100px",
+      left: "1160px"
   },
   "pop6":{
       top:"870px",
-      left: "790px",
-      width:"350px",
-      height:"200px",
-      fontSize:"100px",
+      left: "790px"
   },
   "pop7":{
       top:"710px",
-      left: "420px",
-      width:"350px",
-      height:"200px",
-      fontSize:"100px",
+      left: "420px"
   },
   "pop8":{
       top:"550px",
-      left: "50px",
-      width:"350px",
-      height:"200px",
-      fontSize:"100px",
+      left: "50px"
   },
   "pop9":{
       top:"340px",
-      left: "50px",
-      width:"350px",
-      height:"200px",
-      fontSize:"100px",
+      left: "50px"
   },
   "pop10":{
       top:"170px",
-      left: "420px",
-      width:"350px",
-      height:"200px",
-      fontSize:"100px",
+      left: "420px"
   }
 }
+function digitalNumber(id, start , end) {
+  var odometer = new Odometer({ el: $(id)[0], value: start, theme: 'digital' });
+  odometer.render();
+  odometer.update(end);
+}
+
 $(document).ready(function() {
   window.odometerOptions = {
     auto: false, // Don't automatically initialize everything with class 'odometer'
@@ -93,17 +74,9 @@ $(document).ready(function() {
     animation: 'count' // Count is a simpler animation method which just increments the value,
   };
 
-  var odometer = new Odometer({ el: $("#num1")[0], value: 0, theme: 'digital' });
-  odometer.render();
-  odometer.update(1024);
-
-  var odometer = new Odometer({ el: $("#num2")[0], value: 0, theme: 'digital' });
-  odometer.render();
-  odometer.update(50);
-
-  var odometer = new Odometer({ el: $("#num3")[0], value: 0, theme: 'digital' });
-  odometer.render();
-  odometer.update(256);
+  digitalNumber("#num1", 0, 1024);
+  digitalNumber("#num2", 0, 50);
+  digitalNumber("#num3", 0, 256);
   
   $("#body").click(function() {
     $(".pop").each(function(i,e) {
