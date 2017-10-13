@@ -1,0 +1,158 @@
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<link rel="stylesheet" href="odometer-0.4.6/themes/odometer-theme-digital.css" />
+<script src="odometer-0.4.6/odometer.min.js"></script>
+<script>
+$.fn.extend({
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+        });
+        return this;
+    }
+});
+var list = {
+  "pop1":{
+      top:"10px",
+      left: "790px",
+      width:"350px",
+      height:"200px",
+      fontSize:"100px",
+  },
+  "pop2":{
+      top:"170px",
+      left: "1160px",
+      width:"350px",
+      height:"200px",
+      fontSize:"100px",
+  },
+  "pop3":{
+      top:"340px",
+      left:"1530px",
+      width:"350px",
+      height:"200px",
+      fontSize:"100px",
+  },
+  "pop4":{
+      top:"550px",
+      left: "1530px",
+      width:"350px",
+      height:"200px",
+      fontSize:"100px",
+  },
+  "pop5":{
+      top:"710px",
+      left: "1160px",
+      width:"350px",
+      height:"200px",
+      fontSize:"100px",
+  },
+  "pop6":{
+      top:"870px",
+      left: "790px",
+      width:"350px",
+      height:"200px",
+      fontSize:"100px",
+  },
+  "pop7":{
+      top:"710px",
+      left: "420px",
+      width:"350px",
+      height:"200px",
+      fontSize:"100px",
+  },
+  "pop8":{
+      top:"550px",
+      left: "50px",
+      width:"350px",
+      height:"200px",
+      fontSize:"100px",
+  },
+  "pop9":{
+      top:"340px",
+      left: "50px",
+      width:"350px",
+      height:"200px",
+      fontSize:"100px",
+  },
+  "pop10":{
+      top:"170px",
+      left: "420px",
+      width:"350px",
+      height:"200px",
+      fontSize:"100px",
+  }
+}
+$(document).ready(function() {
+  window.odometerOptions = {
+    auto: false, // Don't automatically initialize everything with class 'odometer'
+    format: '(,ddd).dd', // Change how digit groups are formatted, and how many digits are shown after the decimal point
+    duration: 3000, // Change how long the javascript expects the CSS animation to take
+    theme: 'digital', // Specify the theme (if you have more than one theme css file on the page)
+    animation: 'count' // Count is a simpler animation method which just increments the value,
+  };
+
+  var odometer = new Odometer({ el: $("#num1")[0], value: 0, theme: 'digital' });
+  odometer.render();
+  odometer.update(1024);
+
+  var odometer = new Odometer({ el: $("#num2")[0], value: 0, theme: 'digital' });
+  odometer.render();
+  odometer.update(50);
+
+  var odometer = new Odometer({ el: $("#num3")[0], value: 0, theme: 'digital' });
+  odometer.render();
+  odometer.update(256);
+  
+  $("#body").click(function() {
+    $(".pop").each(function(i,e) {
+      css = list[e.id];
+      $(e).animate(css, "fast", "swing");
+    });
+  })
+});
+</script>
+<style>
+  body {
+    margin:0;padding:0;
+  }
+  #body {
+    width:1920px;
+    height:1080px;
+    background-color:#999;
+    background-image:url("bg.jpg");
+  }
+  .pop {
+    position:absolute;
+    width:1px;
+    height:1px;
+    left:955px;
+    top:535px;
+    background-color:black;
+    border:5px solid white;
+    opacity: 0.5;  
+    font-size:1px;
+    color:white;
+  }
+  .num {
+    font-size:80px;
+    margin-left:10px;
+    border:5px solid #9f9;
+  }
+</style>
+<div id="body">
+<div id="pop1" class="pop" class="animated">1a</div>
+<div id="pop2" class="pop" class="animated">2aa</div>
+<div id="pop3" class="pop" class="animated">3aa</div>
+<div id="pop4" class="pop" class="animated">4aa</div>
+<div id="pop5" class="pop" class="animated">5aa</div>
+<div id="pop6" class="pop" class="animated">6aa</div>
+<div id="pop7" class="pop" class="animated">7aa</div>
+<div id="pop8" class="pop" class="animated">8aa</div>
+<div id="pop9" class="pop" class="animated">9aa</div>
+<div id="pop10" class="pop" class="animated">10aa</div>
+<div id="num1" class="num"></div>
+<div id="num2" class="num"></div>
+<div id="num3" class="num"></div>
+</div>
